@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JACK WDR — Filmmaker &amp; Audiovisual</title>
+<meta name="description" content="JACK WDR — filmmaker e criativo audiovisual: publicidade, social content, motion, fotografia e direção criativa." />
+<meta property="og:title" content="JACK WDR — Filmmaker &amp; Audiovisual" />
+<meta property="og:description" content="Transformo ideias em experiências visuais — audiovisual, criatividade e estratégia para marcas e pessoas." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<style>
+  :root {
+    --background: oklch(0.13 0.002 0);
+    --foreground: oklch(0.95 0.008 90);
+    --card: oklch(0.17 0.004 0);
+    --muted-foreground: oklch(0.66 0.005 90);
+    --accent: oklch(0.47 0.16 18);
+    --accent-foreground: oklch(0.97 0.006 90);
+    --border: oklch(0.27 0.003 0);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; border-color: var(--border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "Barlow", Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .font-display { font-family: "Anton", "Arial Black", sans-serif; }
+  .container { width: min(100% - 2rem, 80rem); margin-inline: auto; }
+  .text-accent { color: var(--accent); }
+  .text-muted { color: var(--muted-foreground); }
+
+  /* Nav */
+  nav {
+    position: fixed; inset-inline: 0; top: 0; z-index: 10;
+    background: linear-gradient(to bottom, color-mix(in oklch, var(--background) 95%, transparent), transparent);
+    padding-block: 1.25rem;
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  nav .brand { font-size: 1.125rem; letter-spacing: 0.08em; }
+  nav .links { display: flex; gap: 1.75rem; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; }
+  nav .links a { transition: color .2s; }
+  nav .links a:hover { color: var(--accent); }
+  @media (max-width: 640px) { nav .links { gap: 1rem; } }
+
+  /* Hero */
+  header {
+    position: relative; display: flex; min-height: 100vh; align-items: flex-end;
+    overflow: hidden; padding: 9rem 0 4rem;
+  }
+  header video.bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: .3; filter: grayscale(1);
+  }
+  header .glow { position: absolute; inset: 0; background: radial-gradient(circle at 75% 35%, oklch(0.3 0.1 18 / 0.55), transparent 40%); }
+  header .fade { position: absolute; inset: 0; background: linear-gradient(to top, var(--background), color-mix(in oklch, var(--background) 60%, transparent), color-mix(in oklch, var(--background) 30%, transparent)); }
+  header .content { position: relative; z-index: 1; }
+  header .kicker { margin-bottom: 1.25rem; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted-foreground); }
+  header h1 { font-size: clamp(70px, 13vw, 180px); text-transform: uppercase; line-height: 0.8; letter-spacing: 0.015em; }
+  header .row { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 1.75rem; }
+  @media (min-width: 768px) { header .row { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+  header .row p { max-width: 520px; font-size: 17px; line-height: 1.65; color: var(--muted-foreground); }
+  .btn {
+    display: inline-flex; border: 1px solid var(--border); padding: 0.875rem 1.25rem;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; transition: all .2s;
+  }
+  .btn:hover { border-color: var(--accent); background: var(--accent); color: var(--accent-foreground); }
+
+  /* Sections */
+  section { border-top: 1px solid var(--border); padding-block: 6rem; }
+  .section-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 3rem; }
+  .section-head h2 { font-size: clamp(45px, 7vw, 88px); text-transform: uppercase; line-height: 0.88; letter-spacing: 0.01em; }
+  .section-head span { font-size: 10px; letter-spacing: 0.18em; color: var(--muted-foreground); }
+
+  /* Work grid */
+  .work-grid { display: grid; gap: 2.5rem 1rem; }
+  @media (min-width: 768px) { .work-grid { grid-template-columns: 1fr 1fr; } }
+  .thumb { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--card); }
+  .thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb .hint {
+    pointer-events: none; position: absolute; bottom: 0.75rem; left: 0.75rem;
+    border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+    background: color-mix(in oklch, var(--background) 70%, transparent);
+    padding: 0.25rem 0.625rem; font-size: 9px; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--muted-foreground); transition: opacity .2s;
+  }
+  article:hover .hint { opacity: 0; }
+  .work-meta { display: flex; justify-content: space-between; gap: 1.25rem; padding-top: 1rem; text-transform: uppercase; }
+  .work-meta h3 { font-size: 1rem; letter-spacing: 0.05em; }
+  .work-meta p { font-size: 10px; letter-spacing: 0.12em; color: var(--muted-foreground); }
+
+  /* About */
+  .about-grid { display: grid; gap: 3rem; }
+  @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1.4fr; gap: 5rem; } }
+  .about-lead { font-size: clamp(30px, 4vw, 54px); line-height: 1.03; letter-spacing: -0.04em; }
+  .about-body { display: grid; gap: 1.25rem; font-size: 17px; line-height: 1.65; color: var(--muted-foreground); }
+
+  /* Services */
+  .services-grid { display: grid; border-top: 1px solid var(--border); }
+  @media (min-width: 768px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+  .service { display: grid; grid-template-columns: 60px 1fr; gap: 1.25rem; border-bottom: 1px solid var(--border); padding-block: 1.75rem; }
+  .service .n { font-size: 11px; color: var(--muted-foreground); }
+  .service h3 { margin-bottom: 0.5rem; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .service p { color: var(--muted-foreground); }
+
+  /* Contact */
+  #contact { min-height: 70vh; display: flex; flex-direction: column; justify-content: space-between; }
+  #contact h2 { font-size: clamp(60px, 10vw, 145px); text-transform: uppercase; line-height: 0.82; letter-spacing: 0.015em; }
+  #contact .row { margin-top: 3.5rem; display: flex; flex-direction: column; gap: 1.75rem; }
+  @media (min-width: 768px) { #contact .row { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+  #contact .row p { max-width: 520px; font-size: 17px; line-height: 1.65; color: var(--muted-foreground); }
+  #contact .socials { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
+  #contact .socials a { transition: color .2s; }
+
+  /* Contact buttons */
+  #contact .socials { display: flex; flex-wrap: wrap; gap: 0.85rem; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
+  #contact .socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 46px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    background: color-mix(in oklch, var(--card) 82%, transparent);
+    color: var(--foreground);
+    transition: all .25s ease;
+  }
+  #contact .socials a i {
+    color: var(--accent);
+    font-size: 17px;
+    transition: color .25s ease, transform .25s ease;
+  }
+  #contact .socials a:hover {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+  #contact .socials a:hover i {
+    color: #fff;
+    transform: scale(1.08);
+  }
+
+  footer { border-top: 1px solid var(--border); padding-block: 1.5rem; }
+  footer .container { display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); }
+  footer .tagline { display: none; }
+  @media (min-width: 640px) { footer .tagline { display: inline; } }
+
+  /* Reveal animation */
+  .reveal { opacity: 0; transform: translateY(25px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.reveal-visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="brand font-display">JACK WDR<span class="text-accent">.</span></a>
+    <div class="links">
+      <a href="#work">Trabalhos</a>
+      <a href="#about">Sobre</a>
+      <a href="#services">Serviços</a>
+      <a href="#contact">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <video class="bg" src="https://jackwdr.lovable.app/__l5e/assets-v1/5afe98be-fbb3-4646-82dc-5ec95fba2112/academia.mp4" poster="https://jackwdr.lovable.app/__l5e/assets-v1/2b3305e9-be1f-428f-9420-f9be678397b5/academia-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Reel de abertura JACK WDR"></video>
+  <div class="glow"></div>
+  <div class="fade"></div>
+  <div class="container content reveal">
+    <p class="kicker">Filmmaker · Creative · Audiovisual</p>
+    <h1 class="font-display">Jack<br /><span class="text-accent">WDR</span></h1>
+    <div class="row">
+      <p>Transformo ideias em experiências visuais — conectando audiovisual, criatividade e estratégia para marcas e pessoas.</p>
+      <a href="#work" class="btn">Ver trabalhos ↓</a>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="font-display">Trabalhos<br />Selecionados</h2>
+      <span>01 / 03</span>
+    </div>
+    <div class="work-grid">
+
+      <div class="reveal">
+        <article>
+          <div class="thumb">
+            <video src="https://jackwdr.lovable.app/__l5e/assets-v1/5afe98be-fbb3-4646-82dc-5ec95fba2112/academia.mp4" poster="https://jackwdr.lovable.app/__l5e/assets-v1/2b3305e9-be1f-428f-9420-f9be678397b5/academia-poster.jpg" muted loop playsinline preload="none"></video>
+            <span class="hint">▶ Passe o mouse</span>
+          </div>
+          <div class="work-meta">
+            <h3 class="font-display">Academia</h3>
+            <p>Fitness / Commercial</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="reveal" style="transition-delay: 80ms">
+        <article>
+          <div class="thumb">
+            <video src="https://jackwdr.lovable.app/__l5e/assets-v1/1a4ba378-962a-4f9d-b441-165d3e64b5ca/making-off.mp4" poster="https://jackwdr.lovable.app/__l5e/assets-v1/481da4e5-954d-4f98-8d16-0143b60a5bd3/making-off-poster.jpg" muted loop playsinline preload="none"></video>
+            <span class="hint">▶ Passe o mouse</span>
+          </div>
+          <div class="work-meta">
+            <h3 class="font-display">Making Off</h3>
+            <p>Behind The Scenes</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="reveal" style="transition-delay: 160ms">
+        <article>
+          <div class="thumb">
+            <video src="https://jackwdr.lovable.app/__l5e/assets-v1/e667c0b7-7a59-417b-bb7e-a10a2e044aea/pre-wedding.mp4" poster="https://jackwdr.lovable.app/__l5e/assets-v1/612c4c7e-fb12-4ba9-b129-2dcb4741680e/pre-wedding-poster.jpg" muted loop playsinline preload="none"></video>
+            <span class="hint">▶ Passe o mouse</span>
+          </div>
+          <div class="work-meta">
+            <h3 class="font-display">Pré-Wedding</h3>
+            <p>Wedding / Cinematic</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="reveal" style="transition-delay: 240ms">
+        <article>
+          <div class="thumb">
+            <video src="https://jackwdr.lovable.app/__l5e/assets-v1/212b4c35-1e15-435d-9a9e-9e21aceccfb4/clinico.mp4" poster="https://jackwdr.lovable.app/__l5e/assets-v1/dd245d72-9c4c-47c5-a7f8-b4755caa88db/clinico-poster.jpg" muted loop playsinline preload="none"></video>
+            <span class="hint">▶ Passe o mouse</span>
+          </div>
+          <div class="work-meta">
+            <h3 class="font-display">Clínico</h3>
+            <p>Institutional / Medical</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="reveal" style="transition-delay: 320ms">
+        <article>
+          <div class="thumb">
+            <video src="https://jackwdr.lovable.app/__l5e/assets-v1/fe70571b-5cbf-467c-b109-dc494e8a4342/comercial.mp4" poster="https://jackwdr.lovable.app/__l5e/assets-v1/0fb8ec47-2352-4a31-860f-fc5efc1b8b83/comercial-poster.jpg" muted loop playsinline preload="none"></video>
+            <span class="hint">▶ Passe o mouse</span>
+          </div>
+          <div class="work-meta">
+            <h3 class="font-display">Comercial</h3>
+            <p>Brand / Advertising</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="reveal" style="transition-delay: 400ms">
+        <article>
+          <div class="thumb">
+            <video src="https://jackwdr.lovable.app/__l5e/assets-v1/f2971425-f7d0-48c9-87b5-cd16c8ba65af/motion-design.mp4" poster="https://jackwdr.lovable.app/__l5e/assets-v1/4ddc6a90-44b5-45db-8ddd-bf2a35c693a2/motion-design-poster.jpg" muted loop playsinline preload="none"></video>
+            <span class="hint">▶ Passe o mouse</span>
+          </div>
+          <div class="work-meta">
+            <h3 class="font-display">Motion Design</h3>
+            <p>Motion Graphics / Animation</p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="font-display">Sobre<br />Mim</h2>
+      <span>02 / 03</span>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="about-lead">5 anos criando no audiovisual e transformando ideias em conteúdo.</p>
+      </div>
+      <div class="reveal" style="transition-delay: 100ms">
+        <div class="about-body">
+          <p>Comecei produzindo com celular e, ao longo dos anos, transformei essa paixão em uma atuação profissional no mercado digital.</p>
+          <p>Hoje combino direção criativa, captação, edição, motion e estratégia de conteúdo para criar materiais visuais que comunicam marcas, produtos e pessoas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2 class="font-display">O Que<br />Faço</h2>
+      <span>03 / 03</span>
+    </div>
+    <div class="services-grid">
+      <div class="reveal"><div class="service"><span class="n">01</span><div><h3 class="font-display">Filmmaking</h3><p>Produção audiovisual para marcas, campanhas e projetos.</p></div></div></div>
+      <div class="reveal" style="transition-delay: 60ms"><div class="service"><span class="n">02</span><div><h3 class="font-display">Social Content</h3><p>Conteúdo pensado para redes sociais e plataformas digitais.</p></div></div></div>
+      <div class="reveal" style="transition-delay: 120ms"><div class="service"><span class="n">03</span><div><h3 class="font-display">Publicidade</h3><p>Vídeos publicitários para produtos, serviços e lançamentos.</p></div></div></div>
+      <div class="reveal" style="transition-delay: 180ms"><div class="service"><span class="n">04</span><div><h3 class="font-display">Motion</h3><p>Motion graphics, animações e vídeos explicativos.</p></div></div></div>
+      <div class="reveal" style="transition-delay: 240ms"><div class="service"><span class="n">05</span><div><h3 class="font-display">Fotografia</h3><p>Fotografia comercial, produtos, profissionais e campanhas.</p></div></div></div>
+      <div class="reveal" style="transition-delay: 300ms"><div class="service"><span class="n">06</span><div><h3 class="font-display">Direção Criativa</h3><p>Conceito, direção e desenvolvimento visual de projetos.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <h2 class="font-display">Tem um<br /><span class="text-accent">projeto?</span></h2>
+    </div>
+    <div class="row">
+      <p>Vamos transformar sua ideia em uma experiência visual.</p>
+      <div class="socials">
+        <a href="https://wa.me/557798410678" target="_blank" rel="noreferrer" aria-label="Conversar com Jack Videomaker no WhatsApp">
+          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a href="https://www.instagram.com/_jackraw?stkn=bHZydTA2dWY5eGRo" target="_blank" rel="noreferrer" aria-label="Instagram de Jack Videomaker">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          <span>Instagram</span>
+        </a>
+        <a href="mailto:playjackrec@gmail.com" aria-label="Enviar e-mail para Jack Videomaker">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <span>E-mail</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span>© 2026 Jack WDR</span>
+    <span class="tagline">Filmmaker · Creative · Audiovisual</span>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add("reveal-visible");
+        io.unobserve(e.target);
+      }
+    }
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // Play thumbs on hover / focus / touch
+  document.querySelectorAll(".thumb video").forEach((v) => {
+    const play = () => v.play().catch(() => {});
+    const stop = () => { v.pause(); v.currentTime = 0; };
+    const card = v.closest("article");
+    card.addEventListener("mouseenter", play);
+    card.addEventListener("mouseleave", stop);
+    card.addEventListener("focusin", play);
+    card.addEventListener("focusout", stop);
+    card.addEventListener("touchstart", play, { passive: true });
+  });
+</script>
+</body>
+</html>
